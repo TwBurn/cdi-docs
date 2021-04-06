@@ -165,7 +165,7 @@ Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and belo
 ```
 Bits 0-4  combinatorial writing mode:
           OP_ZERO     0x0000      Write Zeros
-          OP_SAD      0x000l      Source And Destination
+          OP_SAD      0x0001      Source And Destination
           OP_SANO     0x0002      Source And Not Destination
           OP_RPLC     0x0003      Replace
           OP_NSAO     0x0004      Not Source And Destination
@@ -181,12 +181,12 @@ Bits 0-4  combinatorial writing mode:
           OP_N_SAD    0x000E      Not (Source And Destination)
           OP_ONES     0x000F      Write Ones
           OP_SPD      0x0010      Source Plus Destination
-          OP_SMD      0x00ll      Source Minus Destination
+          OP_SMD      0x0011      Source Minus Destination
           OP_DMS      0x0012      Destination Minus Source
 
 Bits 5-8  color register number for solids:
           OP_CR0      0x0000      Color Register Zero
-          OP_CRl      0x0020      Color Register One
+          OP_CR1      0x0020      Color Register One
           OP_CR2      0x0040      Color Register Two
           OP_CR3      0x0060      Color Register Three
           OP_CR4      0x0080      Color Register Four
@@ -195,12 +195,12 @@ Bits 5-8  color register number for solids:
           OP_CR7      0x00E0      Color Register Seven
           OP_CR8      0x0l00      Color Register Eight
           OP_CR9      0x0120      Color Register Nine
-          OP_CRl0     0x0140      Color Register Ten
-          OP_CRll     0x0160      Color Register Eleven
+          OP_CR10     0x0140      Color Register Ten
+          OP_CR11     0x0160      Color Register Eleven
           OP_CR12     0x0180      Color Register Twelve
-          OP_CR13     0x0lA0      Color Register Thirteen
-          OP_CR14     0x0lC0      Color Register Fourteen
-          OP_CR15     0x0lE0      Color Register Fifteen
+          OP_CR13     0x01A0      Color Register Thirteen
+          OP_CR14     0x01C0      Color Register Fourteen
+          OP_CR15     0x01E0      Color Register Fifteen
 
 Bit 9     transparency writing mode:
           OP_TMVIS    0x0000      Visible. i.e. Not Transparent
