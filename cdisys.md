@@ -312,8 +312,8 @@ Bit 15    clipping flag:
 
 - [`sc_atten()`](#sc_atten-set-volume,-balance-and-position-of-sound) Set volume, balance and position of sound
 - [`sd_loop()`](#sd_loop-set-soundmap-loopback-points) Set soundmap loopback points
-- [`sd_mmix()`](#sd_mmix-mix-two-monaural-soundmaps-to-a-single-stereo-soundmap) Mix two monaural soundmaps to a single stereo soundmap
-- [`sd_smix()`](#sd_smix-mix-two-stereo-soundmaps-to-a-single-monaural-soundmap) Mix two stereo soundmaps to a single monaural soundmap
+- [`sd_mmix()`](#sd_mmix-mix-monaural-to-stereo) Mix two monaural soundmaps to a single stereo soundmap
+- [`sd_smix()`](#sd_smix-mix-stereo-to-stereo) Mix two stereo soundmaps to a single monaural soundmap
 - [`sm_close()`](#sm_close-close-soundmap) Close soundmap
 - [`sm_cncl()`](#sm_cncl-conceal-error-in-soundmap) Conceal error in soundmap
 - [`sm_creat()`](#sm_creat-create-soundmap) Create soundmap
@@ -1942,7 +1942,7 @@ bits 0-3    Drawmap type:
 
 bits 4-5    Resolution:
                0  RES_NORMAL     Normal Resolution
-               1  RES_OOUBLE     Double Resolution
+               1  RES_DOUBLE     Double Resolution
                2                 Reserved
                3  RES_HIGH       High Resolution
 
@@ -2099,7 +2099,7 @@ dm_irwr(path, dmid, ystart, lincnt, data, transarr)
 int  path,              /* Path to video device */
      dmid,              /* Drawmap id */
      ystart,            /* Vertical coordinate to start write */
-     1incnt;            /* Number of lines to write */
+     lincnt;            /* Number of lines to write */
 char *data;             /* Pointer to data to write */
 int  *transarr;         /* Pointer to transfer data array */
 ```
@@ -2350,7 +2350,7 @@ The font identifier is returned upon a successful link/load. -1 is returned on e
 *UCM File Manager C Binding*
 
 ```
-dp_paln{path.dm1d.x,y)
+dp_paln(path, dmid, x, y)
 int path,               /* Path to video device */
     dmid,               /* Drawmap id */
     x, y;               /* Pattern alignment coordinates */
@@ -4005,7 +4005,7 @@ If successful, this function returns 0; if not, the function returns the value -
 *CDFM File Manager C Binding*
 
 ```
-ss_cdda( path. nsecs, statb)
+ss_cdda(path, nsecs, statb)
 int path,          /* Path number of open file to play */
     nsecs;         /* Number of sectors */
 STAT_BLK *statb;   /* Status block */
@@ -4167,33 +4167,34 @@ A PCB is built by the application. It contains information such as which data ty
 
 ```
 typedef struct {
-  short PCS_Stat,       /* Current status of the play */
-        PCB_Sig;        /* Signal to be sent on termination */
-    int PCB_Rec,        /* Maximum num of records to play */
-        PCB_Chan;       /* Channel selection mask */
-  short PCB_AChan;      /* Pointer to array of PCL pointers for video sectors */
-        **PCB_Audio,    /* Pointer to array of PCL pointers for audio sectors */
-        **PCB_Data;     /* Pointer to array of PCL pointers for data sectors */
+  short  PCS_Stat,       /* Current status of the play */
+         PCB_Sig;        /* Signal to be sent on termination */
+  int    PCB_Rec,        /* Maximum num of records to play */
+         PCB_Chan;       /* Channel selection mask */
+  short  PCB_AChan;      /* Audio to memory selection mask */
+  PCL    **PCB_Video,    /* Pointer to array of PCL pointers for video sectors */
+         **PCB_Audio,    /* Pointer to array of PCL pointers for audio sectors */
+         **PCB_Data;     /* Pointer to array of PCL pointers for data sectors */
 } PCB;
 
 typedef struct __pcl {
-   char PCL_Ctrl,       /* Control byte */
-        PCL_Rsvl,       /* Reserved */
-        PCL_Smode,      /* Submode byte */
-        PCL_Type;       /* Coding information byte */
-  short PCL_Sig;        /* Signal to be sent on buffer full */
- struct __pcl *PCL_Nxt; /* Pointer to next PCL */
-   char *PCL_Buf;       /* Pointer to buffer */
-    int PCL_BufSz;      /* Size of buffer */
- PL_ERR *PCL_Err;       /* Pointer to error buffer */
-  short PCL_Rsv2;       /* Reserved */
-    int PCL_Cnt;        /* Current offset in buffer */
+  char   PCL_Ctrl,       /* Control byte */
+         PCL_Rsvl,       /* Reserved */
+         PCL_Smode,      /* Submode byte */
+         PCL_Type;       /* Coding information byte */
+  short  PCL_Sig;        /* Signal to be sent on buffer full */
+  struct __pcl *PCL_Nxt; /* Pointer to next PCL */
+  char   *PCL_Buf;       /* Pointer to buffer */
+  int    PCL_BufSz;      /* Size of buffer */
+  PL_ERR *PCL_Err;       /* Pointer to error buffer */
+  short  PCL_Rsv2;       /* Reserved */
+  int    PCL_Cnt;        /* Current offset in buffer */
 } PCL;
 ```
 
 The values with in the PCB, with the exception of `PCB_Stat`, can be changed at any time by the application. Each change takes effect when the next sector is transferred to memory or following receipt of an End Of Record or Trigger bit.
 
-The play control structures control the functionality of play. The play is started using data pointed to by the file position pointer. The file  osition pointer is updated to the new file position after the play terminates.
+The play control structures control the functionality of play. The play is started using data pointed to by the file position pointer. The file position pointer is updated to the new file position after the play terminates.
 
 Play is an asynchronous operation. This means that when the play is executing, the application continues to run. 
 
