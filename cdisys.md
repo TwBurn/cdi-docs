@@ -66,7 +66,7 @@ for 8 bit and 7/15 bit character modes. The character output functions are:
 - [`dc_exec()`](#dc_exec-execute-display-control-program) Execute display control program
 - [`dc_flnk()`](#dc_flnk-link-line-control-table-to-field-control-table) Link Line control table to Field control table
 - [`dc_intl()`](#dc_intl-set-display-interlace-mode) Set display interlace mode
-- [`dc_llnk()`](#dc_llnk-link-line-control-table-to-line-control-table) Link Line control table to Line control table
+- [`dc_llnk()`](#dc_llnk-link-lct-to-lct) Link Line Control Table to Line Control Table
 - [`dc_nop()`](#dc_nop-write-array-of-no-operation-instructions-to-lct) Write array of no operation instructions to LCT
 - [`dc_prdlct()`](#dc_prdlct-physical-read-of-line-control-table-columns) Physical read of line control table columns
 - [`dc_pwrlct()`](#dc_pwrlct-physical-write-to-line-control-table-columns) Physical write to line control table columns
@@ -894,7 +894,7 @@ A zero is returned on a successful call. If an error occurs, -1 is returned and 
 ```
 #include <ucm.h>
 
-cp_phld(plane,en,factor)
+cp_phld(plane, en, factor)
 int plane,              /* Plane */
     en,                 /* Pixel Hold Enable */
     factor;             /* Pixel Hold Factor*/ 
@@ -1610,7 +1610,7 @@ int path,               /* Path to video device */
     lctid,              /* LCT id */
     startline,          /* LCT line to begin write */
     startcol,           /* LCT column to begin write */
-    numiines,           /* Number of 11nes to write */
+    numlines,           /* Number of lines to write */
     numcols;            /* Number of columns to write */
 ```
 
@@ -1629,7 +1629,7 @@ int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin read */
     colno,              /* LCT column number to begin read */
-    num11nes,           /* Physical number of lines to read */
+    numlines,           /* Physical number of lines to read */
     numcols,            /* Physical number of columns to read */
     *buff;              /* Pointer to buffer to hold data read */
 ```
@@ -1649,7 +1649,7 @@ int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin write */
     colno,              /* LCT column number to begin write */
-    num11nes,           /* Physical number of lines to write */
+    numlines,           /* Physical number of lines to write */
     numcols,            /* Physical number of columns to write */
     *buff;              /* Pointer to buffer to hold data write */
 ```
@@ -1696,12 +1696,12 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_rdlct(path, lctid, 1ineno, colno, num11nes, numcols, buff)
+dc_rdlct(path, lctid, 1ineno, colno, numlines, numcols, buff)
 int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin read */
     colno,              /* LCT column number to begin read */
-    num11nes,           /* Physical number of lines to read */
+    numlines,           /* Physical number of lines to read */
     numcols,            /* Physical number of columns to read */
     *buff;              /* Pointer to buffer to hold data read */
 ```
@@ -1745,9 +1745,9 @@ int path;               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_setcmp(path.mode)
+dc_setcmp(path, mode)
 int path,               /* Path to video device */
-    mode;               /* Display compat1b111ty mode */
+    mode;               /* Display compatibility mode */
 ```
 
 `dc_setcmp()` sets the display compatibility mode. Compatibility mode is provided by the video hardware to allow 525 line images to be decoded on 625 line hardware and vice-versa. The actual function of the call is described in full in the UCM Specification in the Green Book.
@@ -1819,12 +1819,12 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_rdlct(path, lctid, 1ineno, colno, num11nes, numcols, buff)
+dc_rdlct(path, lctid, 1ineno, colno, numlines, numcols, buff)
 int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin wrote */
     colno,              /* LCT column number to begin write */
-    num11nes,           /* Physical number of lines to write */
+    numlines,           /* Physical number of lines to write */
     numcols,            /* Physical number of columns to write */
     *buff;              /* Pointer to buffer of data to write */
 ```
@@ -3002,7 +3002,7 @@ int path;               /* Path to video device */
 ```
 gc_org(path, x, y)
 int path,               /* Path to video device */
-    x,y;                /* New origin of the graphic cursor */
+    x, y;                /* New origin of the graphic cursor */
 ```
 
 `gc_org()` sets the graphics cursor origin. The new origin is specified by the coordinates `x`, `y`. These coordinates are relative to the default origin at the upper left corner of the full screen display. 
@@ -3017,7 +3017,7 @@ int path,               /* Path to video device */
 ```
 gc_pos(path, x, y)
 int path,               /* Path to video device */
-    x,y;                /* Coordinates of the cursor hit-point */
+    x, y;                /* Coordinates of the cursor hit-point */
 ```
 
 `gc_pos()` changes the position of the graphics cursor on the display. The `x`, `y` coordinates specify where the hit-point of the cursor will be positioned.
@@ -3731,7 +3731,7 @@ int path,             /* Path to the audio processor */
 `sd_mmix()` takes data from two monaural soundmaps of the same type specified by `smid1` and `smid2` and mixes them into the soundmap specified by `smid3`.
 
 `stsct` specifies the sector number from which to begin mixing in the
-first sound.map (`smid1`).
+first soundmap (`smid1`).
 
 If the soundmaps are different sizes, the number of sectors mixed is determined by the smallest of the three soundmaps.
 
@@ -3955,7 +3955,7 @@ typedef struct AudioStatus {
 
 char *srqcmem(bytecount, memtype)
 int bytecount,          /* Size of memory to allocate */
-    memtype:            /* Type of memory to a11ocate */ 
+    memtype:            /* Type of memory to allocate */ 
 ```
 
 `srqcmem()` is a direct hook into the OS-9 `F$SRqCMem` system call. The specified `bytecount` will be rounded to a system-defined block size. A size of `0xffffffff` will obtain the largest contiguous block of free memory in the system. `memtype` indicates the specific type of memory to allocate.
@@ -4167,7 +4167,7 @@ A PCB is built by the application. It contains information such as which data ty
 
 ```
 typedef struct {
-  short  PCS_Stat,       /* Current status of the play */
+  short  PCB_Stat,       /* Current status of the play */
          PCB_Sig;        /* Signal to be sent on termination */
   int    PCB_Rec,        /* Maximum num of records to play */
          PCB_Chan;       /* Channel selection mask */
@@ -4226,7 +4226,7 @@ When this call is executed the current file position must be on a sector boundar
 ```
 #include <cdfm.h>
 
-ss_readtoc(path,toc.numbytes)
+ss_readtoc(path, toc, numbytes)
 int path,               /* Path number of open file to be read */
     *toc,               /* Pointer to buffer to hold data read */
     numbytes;           /* Number of bytes of table of contents to read */
