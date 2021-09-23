@@ -193,7 +193,7 @@ Bits 5-8  color register number for solids:
           OP_CR5      0x00A0      Color Register Five
           OP_CR6      0x00C0      Color Register Six
           OP_CR7      0x00E0      Color Register Seven
-          OP_CR8      0x0l00      Color Register Eight
+          OP_CR8      0x0100      Color Register Eight
           OP_CR9      0x0120      Color Register Nine
           OP_CR10     0x0140      Color Register Ten
           OP_CR11     0x0160      Color Register Eleven
@@ -276,7 +276,7 @@ Bit 15    clipping flag:
 - [`viq_pntr()`](#viq_pntr-test-if-pointer-is-in-region) Test if pointer is in region
 - [`viq_rinfo()`](#viq_rinfo-return-region-descriptor-information) Return region descriptor information
 - [`viq_rloc()`](#viq_rloc-inquire-region-location) Inquire region location
-- [`v1q_txtl()`](#v1q_txtl-calculate-length-of-text) Calculate length of text
+- [`viq_txtl()`](#viq_txtl-calculate-length-of-text) Calculate length of text
 
 **The Subroutine Module Link Function** may be used to expand the functions of UCM. This subroutine may be linked with UCM through the use of the `ss_slink()` function.
 
@@ -374,7 +374,7 @@ int sigcode,            /* signal to send */
 
 `alm_atjul()` sends the specified signal to the caller at the specified Julian date and time. This function will also send the signal if the system's date is changed to be equal or less than the alarm time through the use of `F$STime`.
 
-`a1m_atjul()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set. 
+`alm_atjul()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set. 
 
 -----
 
@@ -382,7 +382,7 @@ int sigcode,            /* signal to send */
 *OS-9 System Call C Binding*
 
 ```
-alm_cycle(sigcode, t1meinterva1)
+alm_cycle(sigcode, timeinterva1)
 int sigcode,            /* signal to send */
     timeinterval;       /* time interval */
 ```
@@ -440,7 +440,7 @@ int path,               /* path to video device */
     afn;                /* active font number */ 
 ```
 
-`co_afnt()` activates the font specified by `fntid` for use by `I$Write` and `I$Write1n`.
+`co_afnt()` activates the font specified by `fntid` for use by `I$Write` and `I$Writeln`.
 
 `afn` specifies the active font number to be associated with this font. Up to four fonts (0-3) may be active at any given time.
 
@@ -570,7 +570,7 @@ int clut,               /* CLUT number */
 
 This function returns an instruction which may be written into an LCT or a FCT.
 
-`c1ut` can take values between 0 and 63. `r`, `g` and `b` can take values between 0 and 255.
+`clut` can take values between 0 and 63. `r`, `g` and `b` can take values between 0 and 255.
 
 Refer to chapter V of the Green Book for a description of the parameter(s) to this functions.
 
@@ -584,7 +584,7 @@ Refer to chapter V of the Green Book for a description of the parameter(s) to th
 ```
 #include <ucm.h>
 
-cp_crmatte(rgdef, array, w1dth, heigth,  matreg, incmd, outcmd)
+cp_crmatte(rgdef, array, width, heigth,  matreg, incmd, outcmd)
 RegionDesc *rgdef;      /* pointer to region definition */
 int *array,             /* pointer to buffer for instructions */
     width,              /* width of buffer for instructions */
@@ -636,15 +636,15 @@ Refer to chapter V of the Green Book for a description of the parameter(s) to th
 ```
 #include <ucm.h>
 
-cp_dadr_co1(dmdsc, dmp, array, x, y, num1ines, 1inerepeat, 1ineho1d)
+cp_dadr_co1(dmdsc, dmp, array, x, y, numlines, linerepeat, linehold)
 
 DrawmapDesc *dmdsc;     /* pointer to drawmap desc */
-int dmp,                /* dp plane (used for mu1ti-p1ane dmaps) */
+int dmp,                /* dp plane (used for multi-plane dmaps) */
     *array,             /* pointer to buffer for instructions */
     x, y,               /* X, Y coordinate for first instruction*/
     numlines,           /* number of instructions to generate*/
     linerepeat,         /* line repeat value (for vertical zoom)*/
-    1ineho1d;           /* line hold value (for vertical granulation) */
+    linehold;           /* line hold value (for vertical granulation) */
 ```
 
 This function returns an array of instructions which may be written into a column of an LCT.
@@ -668,7 +668,7 @@ A zero is returned on a successful call. If an error occurs, -1 is returned and 
 cp_dprm(rms, prf, bp)
 int rms,                /* Run length or Mosaic Select */
     prf,                /* Pixel Repeat Factor */
-    bp;                 /* B1t per Pixel */ 
+    bp;                 /* Bit per Pixel */ 
 
 ```
 
@@ -685,7 +685,7 @@ This function returns an instruction which may be written into an LCT or a FCT.
 - `PRF_X2`          Pixel repeat factor = times 2
 - `PRF_X4`          Pixel repeat factor = times 4
 - `PRF_X8`          Pixel repeat factor = times 8
-- `PRF_Xl6`         Pixel repeat factor = times 16
+- `PRF_X16`         Pixel repeat factor = times 16
 
 `bp` can take one of the three values:
 
@@ -981,7 +981,7 @@ This function returns an instruction which may be written into an LCT or a FCT.
 - `TR_MAT0_T`           Matte Flag 0 = TRUE
 - `TR_MATl_T`           Matte Flag 1 = TRUE
 - `TR_M0CK_T`           Matte Flag 0 = TRUE or Color key = TRUE
-- `TR_MlCK_T`           Matte Flag 1 = TRUE or Color key = TRUE
+- `TR_M1CK_T`           Matte Flag 1 = TRUE or Color key = TRUE
 - `TR_OFF`              Never (No transparent area)
 - `TR_CKEY_F`           Color key = FALSE
 - `TR_TBIT_F`           Transparent bit = 0
@@ -1256,7 +1256,7 @@ crt_ilin(path)
 int path;               /* Path to video device */
 ```
 
-`crt_i1in()` causes the line on which the cursor is placed and all lines following to be scrolled down one line. The line with the cursor is then cleared to spaces.
+`crt_ilin()` causes the line on which the cursor is placed and all lines following to be scrolled down one line. The line with the cursor is then cleared to spaces.
 
 -1 is returned on error and `errno` is set. 
 
@@ -1449,7 +1449,7 @@ If unsuccessful, `csd_setparam()` returns -1 and the appropriate error code is p
 *UCM File Manager C Binding*
 
 ```
-dc_crfct(path, p1aneno, fct1en, res)
+dc_crfct(path, planeno, fctlen, res)
 
 int path,               /* Path to video device */
     planeno,            /* Plane number */
@@ -1457,7 +1457,7 @@ int path,               /* Path to video device */
     res;                /* FCT resolution */
 ```
 
-`dc_crfct()` creates a field control table (FCT) and returns an FCT identifier. The FCT contains the instructions which the display control hardware for the specified plane (`planeno`) will execute during the vertical retrace period. `fct1en` specifies the number of instructions for the FCT.
+`dc_crfct()` creates a field control table (FCT) and returns an FCT identifier. The FCT contains the instructions which the display control hardware for the specified plane (`planeno`) will execute during the vertical retrace period. `fctlen` specifies the number of instructions for the FCT.
 
 If `res` is 0, the FCT will be created for a low resolution display.
 
@@ -1473,7 +1473,7 @@ You must create one FCT for each plane to display. For each of these planes, one
 *UCM File Manager C Binding*
 
 ```
-dc_crlct(path, p1aneno, lct1en, res)
+dc_crlct(path, planeno, lctlen, res)
 
 int path,               /* Path to video device */
     planeno,            /* Plane number */
@@ -1547,7 +1547,7 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_flnk(path, fctid, 1ctid, lctline)
+dc_flnk(path, fctid, lctid, lctline)
 int path,               /* Path to video device */
     fctid,              /* FCT id */
     lctid,              /* LCT id */
@@ -1624,7 +1624,7 @@ The function returns -1 on error and `errno` is set.
 *UCM File Manager C Binding*
 
 ```
-dc_prd1ct(path, lct1d, lineno, colno, num1ines, numco1s, buff)
+dc_prdlct(path, lctid, lineno, colno, numlines, numcols, buff)
 int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin read */
@@ -1644,7 +1644,7 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_pwrlct(path, lct1d, lineno, colno, num1ines, numco1s, buff)
+dc_pwrlct(path, lctid, lineno, colno, numlines, numcols, buff)
 int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin write */
@@ -1696,7 +1696,7 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_rdlct(path, lctid, 1ineno, colno, numlines, numcols, buff)
+dc_rdlct(path, lctid, lineno, colno, numlines, numcols, buff)
 int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin read */
@@ -1819,7 +1819,7 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dc_rdlct(path, lctid, 1ineno, colno, numlines, numcols, buff)
+dc_rdlct(path, lctid, lineno, colno, numlines, numcols, buff)
 int path,               /* Path to video device */
     lctid,              /* LCT id */
     lineno,             /* LCT line number to begin wrote */
@@ -1934,7 +1934,7 @@ bits 0-3    Drawmap type:
                5  D_CLUT8        CLUT8 mode
                6  D_RL3          Run-Length 3 mode
                7  D_RL7          Run-Length 7 mode
-               8  D_DYUV         De1ta-YUV mode
+               8  D_DYUV         Delta-YUV mode
                9  D_RGB          RGB555 mode
               10                 Reserved
               11  D_QHY          DYUV+QHY mode
@@ -1955,7 +1955,7 @@ bit 15      LPT Format:
 
 If the specified `type` is Run Length (`RL3` or `RL7`), the `width` and `height` parameters are ignored when calculating the size of the drawmap. 
 
-If `type` is `QHY`, the `size` and `1ength` parameters are used to create a standard `DYUV` drawmap in one plane. The parameter `qlength` specifies the
+If `type` is `QHY`, the `size` and `length` parameters are used to create a standard `DYUV` drawmap in one plane. The parameter `qlength` specifies the
 length of a `QHY` drawmap block in the other plane. Otherwise, `qlength` is
 ignored.
 
@@ -1963,7 +1963,7 @@ If `type` is `RGB555`, the driver calculates the size and then allocates two blo
 
 The plane number is specified by `plane` in order to allocate the drawmap in the proper memory.
 
-The size of the drawmap data area depends upon the two-dimensional size specified by `width` and `height` or on the `1ength` parameter. The driver calculates the amount of memory required by the specified size (`width * height`). This amount is compared with `length`; the greater of the two values is used for the size of the data area.
+The size of the drawmap data area depends upon the two-dimensional size specified by `width` and `height` or on the `length` parameter. The driver calculates the amount of memory required by the specified size (`width * height`). This amount is compared with `length`; the greater of the two values is used for the size of the data area.
 
 If the application creates a drawmap with even and odd lines separated, the driver initializes the Line Pointer Table (LPT) entry for the first line to byte 0 and the LPT entry for the second line at byte `size / 2`.
 
@@ -1995,7 +1995,7 @@ bits 0-3    Drawmap type:
                5  D_CLUT8        CLUT8 mode
                6  D_RL3          Run-Length 3 mode
                7  D_RL7          Run-Length 7 mode
-               8  D_DYUV         De1ta-YUV mode
+               8  D_DYUV         Delta-YUV mode
                9  D_RGB          RGB555 mode
               10                 Reserved
               11  D_QHY          DYUV+QHY mode
@@ -2016,7 +2016,7 @@ bit 15      LPT Format:
 
 If the specified `type` is Run Length (`RL3` or `RL7`), the `width` and `height` parameters are ignored when calculating the size of the drawmap. 
 
-If `type` is `QHY`, the `size` and `1ength` parameters are used to create a standard `DYUV` drawmap in one plane. The parameter `qlength` specifies the
+If `type` is `QHY`, the `size` and `length` parameters are used to create a standard `DYUV` drawmap in one plane. The parameter `qlength` specifies the
 length of a `QHY` drawmap block in the other plane. Otherwise, `qlength` is
 ignored.
 
@@ -2024,7 +2024,7 @@ If `type` is `RGB555`, the driver calculates the size and then allocates two blo
 
 The plane number is specified by `plane` in order to allocate the drawmap in the proper memory.
 
-The size of the drawmap data area depends upon the two-dimensional size specified by `width` and `height` or on the `1ength` parameter. The driver calculates the amount of memory required by the specified size (`width * height`). This amount is compared with `length`; the greater of the two values is used for the size of the data area.
+The size of the drawmap data area depends upon the two-dimensional size specified by `width` and `height` or on the `length` parameter. The driver calculates the amount of memory required by the specified size (`width * height`). This amount is compared with `length`; the greater of the two values is used for the size of the data area.
 
 If the application creates a drawmap with even and odd lines separated, the driver initializes the Line Pointer Table (LPT) entry for the first line to byte 0 and the LPT entry for the second line at byte `size / 2`.
 
@@ -2298,7 +2298,7 @@ int path,               /* Path to video device */
 *UCM File Manager C Binding*
 
 ```
-dp_c1ip(path, dmid, regid)
+dp_clip(path, dmid, regid)
 int path,               /* Path to video device */
     dmid,               /* Drawmap id */
     regid;              /* Region id */
@@ -2512,7 +2512,7 @@ int path,               /* Path to video device */
 ```
 #include <ucm.h>
 
-dr_bfi1(path, dmid, opcode, x, y, bco1or)
+dr_bfi1(path, dmid, opcode, x, y, bcolor)
 int path,               /* Path to video device */
     dmid,               /* Drawmap id */
     opcode,             /* Drawing operation codes */
@@ -3032,7 +3032,7 @@ int path,               /* Path to video device */
 ```
 gc_ptn(path, hitx, hity, width, height, res, pattern)
 int  path,              /* Path to video device */
-     hitx, hity,        /* Cursor hit-point coords 1n pattern */
+     hitx, hity,        /* Cursor hit-point coords in pattern */
      width,             /* Width of bitmap pattern */
      height,            /* Height of bitmap pattern */
      res;               /* Resolution of cursor display */
