@@ -584,11 +584,11 @@ Refer to chapter V of the Green Book for a description of the parameter(s) to th
 ```
 #include <ucm.h>
 
-cp_crmatte(rgdef, array, width, heigth,  matreg, incmd, outcmd)
+cp_crmatte(rgdef, array, width, height,  matreg, incmd, outcmd)
 RegionDesc *rgdef;      /* pointer to region definition */
 int *array,             /* pointer to buffer for instructions */
     width,              /* width of buffer for instructions */
-    heigth,             /* heigth of buffer for instructions */
+    height,             /* height of buffer for instructions */
     matreg,             /* first matte register to use */
     incmd,              /* command for transitions into matte */
     outcmd;             /* command for transitions out of matte */
@@ -604,7 +604,7 @@ The vertical coordinate of the upper left comer of the regions's boundary rectan
 When a matte is placed on the screen, the vertical position of the matte on the screen is determined by the first line from which the array is written in the LCT. The horizontal position of the matte on the screen is
 determined by the X positions contained in the matte instructions in the array. These X positions can be modifed in the array by the function `cp_offset_matte()`.
 
-The heigth specified must be large enough to contain one (1) extra line for the matte end instruction. The instruction slots which are not filled with matte instructions will be filled with no operation instructions.
+The height specified must be large enough to contain one (1) extra line for the matte end instruction. The instruction slots which are not filled with matte instructions will be filled with no operation instructions.
 
 An error is returned when the array is not wide or not long enough to hold the matte definition. The matte may still be used in this case, but it will be incomplete.
 
@@ -873,10 +873,10 @@ This function returns an instruction which may be written into an LCT or a FCT.
 ```
 #include <ucm.h>
 
-cp_offset_matte(array, width, heigth, x)
+cp_offset_matte(array, width, height, x)
 int *array,             /* pointer to buffer of matte instructions */
     width,              /* buffer width */
-    heigth,             /* buffer height */
+    height,             /* buffer height */
     x;                  /* X offset (may be + or -) */
 ```
 
@@ -960,9 +960,9 @@ This function returns an instruction which may be written into an LCT or a FCT.
 ```
 #include <ucm.h>
 
-cp_tc1(mix, ta, tb)
-int mix,                /* Mixing Flag*/
-    ta,                 /* Transparency mechanism for plane A*/
+cp_tcl(mix, ta, tb)
+int mix,                /* Mixing Flag */
+    ta,                 /* Transparency mechanism for plane A */
     tb;                 /* Transparency mechanism for plane B */
 ```
 
@@ -977,9 +977,9 @@ This function returns an instruction which may be written into an LCT or a FCT.
 
 - `TR_ON`               Always (plane disabled)
 - `TR_CKEY_T`           Color key = TRUE
-- `TR_TBIT_l`           Transparent bit = 1
+- `TR_TBIT_1`           Transparent bit = 1
 - `TR_MAT0_T`           Matte Flag 0 = TRUE
-- `TR_MATl_T`           Matte Flag 1 = TRUE
+- `TR_MAT1_T`           Matte Flag 1 = TRUE
 - `TR_M0CK_T`           Matte Flag 0 = TRUE or Color key = TRUE
 - `TR_M1CK_T`           Matte Flag 1 = TRUE or Color key = TRUE
 - `TR_OFF`              Never (No transparent area)
@@ -1401,7 +1401,7 @@ int type,               /* Device type code */
     #define DT_PIPEDEV  9   /* Pipe Device */
 
 /* Base Case Peripherals */
-    #define DT_COPLAY   6   /* CD-Player */
+    #define DT_CDPLAY   6   /* CD-Player */
     #define DT_AUDSET   7   /* Audio Set */
     #define DT_DISPLY   8   /* Display Monitor */
     
