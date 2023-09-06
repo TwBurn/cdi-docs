@@ -235,7 +235,7 @@ Bit 15    clipping flag:
 - [`gc_col()`](#gc_col-set-cursor-color) Set cursor color
 - [`gc_hide()`](#gc_hide-hide-cursor) Hide cursor
 - [`gc_org()`](#gc_org-set-graphic-cursor-origin) Set Graphic cursor origin
-- [`gc_pos()`](#gc_pos-position-cursor) Position cursor
+- [`gc_pos()`](#gc_pos-position-graphics-cursor) Position cursor
 - [`gc_ptn()`](#gc_ptn-set-cursor-pattern) Set cursor pattern
 - [`gc_show()`](#gc_show-show-cursor) Show cursor
 
@@ -3016,8 +3016,8 @@ int path,               /* Path to video device */
 
 ```
 gc_pos(path, x, y)
-int path,               /* Path to video device */
-    x, y;                /* Coordinates of the cursor hit-point */
+int  path,              /* Path to video device */
+    x, y;               /* Coordinates of the cursor hit-point */
 ```
 
 `gc_pos()` changes the position of the graphics cursor on the display. The `x`, `y` coordinates specify where the hit-point of the cursor will be positioned.
