@@ -100,7 +100,7 @@ for 8 bit and 7/15 bit character modes. The character output functions are:
 - [`cp_phld()`](#cp_phld-load-mosaic-pixel-hold-factor) Load mosaic pixel hold factor
 - [`cp_po()`](#cp_po-load-plane-order) Load plane order
 - [`cp_sig()`](#cp_sig-signal-when-scan-reaches-this-line) Signal when scan reaches this line
-- [`cp_tci()`](#cp_tci-load-transparency-control-information) Load transparency control information
+- [`cp_tcl()`](#cp_tcl-load-transparency-control-information) Load transparency control information
 - [`cp_tcol()`](#cp_tcol-load-transparency-color) Load transparency color
 - [`cp_yuv()`](#cp_yuv-load-dyuv-start-value) Load DYUV start value
 
@@ -789,7 +789,7 @@ int reg,                /* Matte Register */
     op,                 /* Operation Code */
     mf,                 /* Matte Flag */
     icf,                /* Image Contribution Factor */
-    x:                  /* X Position */ 
+    x                   /* X Position */ 
 ```
 
 This function returns an instruction which may be written into an LCT or a FCT.
