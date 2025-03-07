@@ -100,7 +100,7 @@ for 8 bit and 7/15 bit character modes. The character output functions are:
 - [`cp_phld()`](#cp_phld-load-mosaic-pixel-hold-factor) Load mosaic pixel hold factor
 - [`cp_po()`](#cp_po-load-plane-order) Load plane order
 - [`cp_sig()`](#cp_sig-signal-when-scan-reaches-this-line) Signal when scan reaches this line
-- [`cp_tcl()`](#cp_tcl-load-transparency-control-information) Load transparency control information
+- [`cp_tci()`](#cp_tci-load-transparency-control-information) Load transparency control information
 - [`cp_tcol()`](#cp_tcol-load-transparency-color) Load transparency color
 - [`cp_yuv()`](#cp_yuv-load-dyuv-start-value) Load DYUV start value
 
@@ -954,13 +954,13 @@ This function returns an instruction which may be written into an LCT or a FCT.
 
 -----
 
-### `cp_tcl()` Load transparency control information
+### `cp_tci()` Load transparency control information
 *UCM File Manager C Binding*
 
 ```
 #include <ucm.h>
 
-cp_tcl(mix, ta, tb)
+cp_tci(mix, ta, tb)
 int mix,                /* Mixing Flag */
     ta,                 /* Transparency mechanism for plane A */
     tb;                 /* Transparency mechanism for plane B */
