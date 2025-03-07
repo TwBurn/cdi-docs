@@ -732,7 +732,7 @@ This function returns an instruction which may be written into an LCT or a FCT.
 
 cp_icm(cm0, cml, nm, ev, cs)
 int cm0,                /* Coding method for path 0 */
-    cml,                /* Coding method for path 1 */
+    cm1,                /* Coding method for path 1 */
     nm,                 /* Number of mattes */
     ev,                 /* External video */
     cs;                 /* CLUT bank selector */
@@ -746,7 +746,7 @@ This function returns an instruction which may be written into an LCT or a FCT.
 - `ICM_CLUT4`       Color Look Up Table with 4 bits per pixel
 - `ICM_CLUT7`       Color Look Up Table with 7 bits per pixel
 - `ICM_CLUTS`       Color Look Up Table with 8 bits per pixel
-- `ICM_CLUT77`      CLUT7 or 7 Mode                          
+- `ICM_CLUT77`      CLUT7 or 7 Mode (Dual CLUT)                         
 - `ICM_DYUV`        Natural Image DYUV                       
 - `ICM_RGB`         RGB555                                   
 
@@ -772,7 +772,7 @@ The following table describes what combination of values for `cm0` and `cml` are
 - `EV_ON`           External Video Enabled
 - `EV_OFF`          External Video Disabled
 
-`cs` is the CLUT selector. It may have have either of these values: `CS_A` or `CS_B`.
+`cs` is the CLUT selector for dual 7-bit CLUTs (`ICM_CLUT77`). It may have have either of these values: `CS_A` (Bank 0 and 1) or `CS_B` (Bank 2 and 3).
 
 A zero is returned on a successful call. If an error occurs, -1 is returned and `errno` is set.
 
