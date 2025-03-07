@@ -798,7 +798,7 @@ This function returns an instruction which may be written into an LCT or a FCT.
 
 `op` can take one of the following values:
 
-- `MO_ENO`          Disregard commands in higher registers
+- `MO_END`          Disregard commands in higher registers
 - `MO_ICF_0`        Change ICF for plane A
 - `MO_ICF_l`        Change ICF for plane B
 - `MO_RES`          Reset matte flag to FALSE
