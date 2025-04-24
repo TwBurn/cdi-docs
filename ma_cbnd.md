@@ -1,6 +1,8 @@
-# C-BINDING MPEG AUDIO
+# CD-i MPEG Audio Libraries Technical Reference Manual
 
-> This document is a manual conversion from the scanned ma_cbnd.pdf. Notes by the creator of this document are listed in quote sections like this one.
+> This document is a manual conversion from the scanned `ma_cbnd.pdf`. Notes by the creator of this document are listed in quote sections like this one.
+>
+> Parts of this document have been appended from the Green Book descriptions.
 >
 > Please refer to the Green Book description of the corresponding `MA_` function for complete information on function parameters and behaviour.
 >
@@ -638,7 +640,7 @@ typedef struct _audiostatus {
 } MA_status;
 ```
 
-`ma_status()` returns `0` if successful; otherwise `-1` is,
+`ma_status()` returns the audio mapID if successful; otherwise `-1` is,
 returned and `errno` is set.
 
 -----
@@ -646,9 +648,9 @@ returned and `errno` is set.
 ### `ma_trigger()` Define events to signal
 
 ```c
-ma_trigger(path, signalbase_eventmask)
-int path,                  /* Path Number */
-  signalbase_eventmask;    /* signal and event info */
+ma_trigger(path, mask)
+int path,    /* Path Number */
+    mask;    /* signal and event info */
 ```
 
 This function defines the audio events to send a
@@ -660,27 +662,27 @@ to receive a signal from the decoding system.
 In case where one (or more) of the indicated events
 happens, a signal will be received. The value of
 this signal consists of two parts. The upper S bits
-of the 16-bi t signal value are determined by the
-application at the moment it issued the MA Trigger
-call. The remaining bi ts reflect the status- of the
-decoding system at the time the event occured .. The
-system will only pass those statusbi ts to the
+of the 16-bit signal value are determined by the
+application at the moment it issued the `ma_trigger()`
+call. The remaining bits reflect the status of the
+decoding system at the time the event occured. The
+system will only pass those status bits to the
 application that were enabled in the eventmask at the
-time the MA Trigger call was made. The setting of the
+time the `ma_trigger()` call was made. The setting of the
 signal eventmask remains valid for this path until
-either-the path is closed or a new MA Trigger call is
+either-the path is closed or a new `ma_trigger()` call is
 issued for this path.
 
-format of signal_eventmask parameter:
+Format of `mask` parameter:
 
 ```plaintext
-   +-----------+----------------+---+---+---+---+---+
-   |signalbase |                |DEC|UNF|UPD|CSU|EOI|
-   +-----------+----------------+---+---+---+---+---+
-bit 15  ...  11 10     ...     5  4   3   2   1   0
+   +------------+---------------+---+---+---+---+---+
+   | signalbase |               |DEC|UNF|UPD|CSU|EOI|
+   +------------+---------------+---+---+---+---+---+
+bit 15  ...   11 10    ...     5  4   3   2   1   0
 ```
 
-where
+Where
 
 - bit 0: `EOI` End Of Iso stream detected
 - bit 1: `CSU` Decoder changed to new audio stream
@@ -688,8 +690,7 @@ where
 - bit 3: `UNF` The decoder has no data to decode
 - bit 4: `DEC` The decoder started decoding
 - bit 5...10 Reserved, should be zero
-- bit 11..15 signalbase: upper 5 bits of 16-bit signal to send.
-value must be between `00001` and `11111` binary
+- bit 11..15 signalbase: upper 5 bits of 16-bit signal to send (value must be between `00001` and `11111` binary)
 
 `ma_trigger()` returns `0` if successful; otherwise `-1` is,
 returned and `errno` is set.
