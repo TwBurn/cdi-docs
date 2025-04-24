@@ -26,7 +26,7 @@ Each DSD is made up of 3 parts: a name, a type and a list of parameters which de
 
 Finally, `cdi.l` contains the low-level special effects functions. These low level special effects routines return actual FCT and LCT instructions which can be written directly into the control tables to affect the display. The low level routines place an extra layer of software between the application and the actual manipulation of the LCTs. In this way, the content provider does not directly need to know the format of all LCT instructions.
 
-In most cases, a function which does not have a specific return value will return 0 if no error occurs and -1 when an error does occur. If an error occurs, the global variable `errno` will be set. Functions which return pointers will return NULL on error.
+In most cases, a function which does not have a specific return value will return `0` if no error occurs and `-1` when an error does occur. If an error occurs, the global variable `errno` will be set. Functions which return pointers will return NULL on error.
 
 #### UCM Functions
 
@@ -364,7 +364,7 @@ int sigcode,            /* signal to send */
 `alm_atdate()` sends the specified signal to the caller at the specified Gregorian date and time. This function will also send the signal if the system's date is changed to be equal or less than the alarm time through
 the use of `F$STime`.
 
-`alm_atdate()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set.
+`alm_atdate()` returns the id of the alarm if successful; otherwise `-1` is returned and `errno` is set.
 
 -----
 
@@ -381,7 +381,7 @@ int sigcode,            /* signal to send */
 
 `alm_atjul()` sends the specified signal to the caller at the specified Julian date and time. This function will also send the signal if the system's date is changed to be equal or less than the alarm time through the use of `F$STime`.
 
-`alm_atjul()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set.
+`alm_atjul()` returns the id of the alarm if successful; otherwise `-1` is returned and `errno` is set.
 
 -----
 
@@ -401,7 +401,7 @@ int sigcode,            /* signal to send */
 
 **NOTE**: All time intervals are rounded up to the nearest 0.01 second.
 
-`alm_cycle()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set.
+`alm_cycle()` returns the id of the alarm if successful; otherwise `-1` is returned and `errno` is set.
 
 -----
 
@@ -416,7 +416,7 @@ int alarmid;            /* alarm id */
 
 `alm_delete()` removes the specified alarm request. If zero is passed as the `alarmid`, all pending alarm requests are removed.
 
-`alm_delete()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set.
+`alm_delete()` returns the id of the alarm if successful; otherwise `-1` is returned and `errno` is set.
 
 -----
 
@@ -436,7 +436,7 @@ int sigcode,            /* signal to send */
 
 **NOTE**: All time intervals are rounded up to the nearest 0.01 second.
 
-`alm_set()` returns the id of the alarm if successful; otherwise -1 is returned and `errno` is set.
+`alm_set()` returns the id of the alarm if successful; otherwise `-1` is returned and `errno` is set.
 
 -----
 
@@ -457,7 +457,7 @@ int path,               /* path to video device */
 
 This is similar to the `dp_afnt()` function for graphics text output. The font must have previously been loaded by use of the `dp_gfnt()` function.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -473,7 +473,7 @@ int path,               /* path to video device*/
 
 `co_cod()` sets the drawmap specified by dmid as the drawmap in which all standard character output will take place.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -489,7 +489,7 @@ int path,               /* path to video device */
 
 `co_dfnt()` deactivates the standard output font specified by `afn`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -625,7 +625,7 @@ The height specified must be large enough to contain one (1) extra line for the 
 
 An error is returned when the array is not wide or not long enough to hold the matte definition. The matte may still be used in this case, but it will be incomplete.
 
-A zero is returned on a successful call. If an error occurs, -1 is returned and `errno` is set.
+A zero is returned on a successful call. If an error occurs, `-1` is returned and `errno` is set.
 
 -----
 
@@ -674,7 +674,7 @@ A drawmap may be larger and longer than the physical screen and the CD-I hardwar
 
 The `linerepeat` and `linehold` parameters are used to perform vertical mosaics.
 
-A zero is returned on a successful call. If an error occurs, -1 is returned and `errno` is set.
+A zero is returned on a successful call. If an error occurs, `-1` is returned and `errno` is set.
 
 -----
 
@@ -796,7 +796,7 @@ The following table describes what combination of values for `cm0` and `cml` are
 
 `cs` is the CLUT selector for dual 7-bit CLUTs (`ICM_CLUT77`). It may have have either of these values: `CS_A` (Bank 0 and 1) or `CS_B` (Bank 2 and 3).
 
-A zero is returned on a successful call. If an error occurs, -1 is returned and `errno` is set.
+A zero is returned on a successful call. If an error occurs, `-1` is returned and `errno` is set.
 
 -----
 
@@ -906,7 +906,7 @@ This function updates array wich contains matte instructions.
 
 Given an array of matte instructions, this function modifies the x position parameter of the matte instructions contained in the array. An application will use this function when it wants to place a matte on a different horizontal position.
 
-A zero is returned on a successful call. If an error occurs, -1 is returned and `errno` is set.
+A zero is returned on a successful call. If an error occurs, `-1` is returned and `errno` is set.
 
 -----
 
@@ -1081,7 +1081,7 @@ int path;               /* Path to video device */
 
 `crt_cdwn()` moves the cursor down one line in the same column. If the cursor is on the bottom line, the screen will scroll up one line.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1096,7 +1096,7 @@ int path;               /* Path to video device */
 
 `crt_ceol()` causes all characters from the cursor position to the end of the line to be cleared to spaces.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1111,7 +1111,7 @@ int path;               /* Path to video device */
 
 `crt_ceos()` causes all characters from the cursor postion to the end of the screen to be cleared to spaces.
 
--1 is returned o:n error and `errno` is set.
+`-1` is returned o:n error and `errno` is set.
 
 -----
 
@@ -1126,7 +1126,7 @@ int path;               /* Path to video device */
 
 `crt_clft()` moves the cursor one column to the left. If the cursor is in the first column of a line, it moves to the last column of the previous line. If the cursor is in the first column of the first line, this function has no effect.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1141,7 +1141,7 @@ int path;               /* Path to video device */
 
 `crt_cr()` moves the cursor to the first position on the current line.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1156,7 +1156,7 @@ int path;               /* Path to video device */
 
 `crt_crgt()` moves the cursor one column to the right. If the cursor is in the last column and autowrap is on, it moves to the first position on the next line. If the cursor is in the last column of the bottom line and autowrap is on, the screen is scrolled up one line and the cursor is placed in the first position of the new bottom line.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 > This function is also referred to as `crt_crght()` in the documentation, which one is correct is to be determined
 
@@ -1173,7 +1173,7 @@ int path;               /* Path to video device */
 
 `crt_cscrn()` causes all character positions to be cleared to spaces
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1188,7 +1188,7 @@ int path;               /* Path to video device */
 
 `crt_cup()` moves the cursor up one line in the same column. If the cursor is on the top line, it is not moved.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1204,7 +1204,7 @@ int path,               /* Path to video device */
 
 `crt_curxy()` positions the cursor at the `x`, `y` coordinates given. The coordinates given must have an offset of `0x20`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 #### Example
 
@@ -1223,7 +1223,7 @@ int path;               /* Path to video device */
 
 `crt_dchar()` causes all characters to the right of the cursor to be moved one column to the left. The character under the cursor is destroyed and the last character in the line is cleared to a space.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1238,7 +1238,7 @@ int path;               /* Path to video device */
 
 `crt_dlin()` deletes the line on which the cursor is currently placed. All following lines are scrolled up one line and the bottom line is cleared to spaces. The cursor remains in place.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1253,7 +1253,7 @@ int path;               /* Path to video device */
 
 `crt_hidcur()` causes the text cursor to disappear from the screen.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1268,7 +1268,7 @@ int path;               /* Path to video device */
 
 `crt_home()` is used to move the cursor to the first column of the top line.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1285,7 +1285,7 @@ int path;               /* Path to video device */
 the right to be moved one column to the right. The character under the
 cursor is cleared to a space.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1300,7 +1300,7 @@ int path;               /* Path to video device */
 
 `crt_ilin()` causes the line on which the cursor is placed and all lines following to be scrolled down one line. The line with the cursor is then cleared to spaces.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1315,7 +1315,7 @@ int path;               /* Path to video device */
 
 `crt_revoff()` turns off reverse video.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1330,7 +1330,7 @@ int path;               /* Path to video device */
 
 `crt_revon()` turns on reverse video.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1345,7 +1345,7 @@ int path;               /* Path to video device */
 
 `crt_shwcur()`  causes the text cursor to appear on the screen.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1360,7 +1360,7 @@ int path;               /* Path to video device */
 
 `crt_uloff()` turns off underlining.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1375,7 +1375,7 @@ int path;               /* Path to video device */
 
 `crt_ulon()` turns on underlining.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1390,7 +1390,7 @@ int path;               /* Path to video device */
 
 `crt_wrapoff()` causes auto-wrap mode to be turned off.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1405,7 +1405,7 @@ int path;               /* Path to video device */
 
 `crt_wrapon()` causes auto-wrap mode to be turned on.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1420,7 +1420,7 @@ char *name;             /* Name of device to remove */
 
 `csd_deldev()` removes the Device Status Descriptor (DSD) entry with the specified device name.
 
-If unsuccessful, `csd_deldev()` returns -1 and the appropriate error code is placed in the global variable `errno`.
+If unsuccessful, `csd_deldev()` returns `-1`and the appropriate error code is placed in the global variable `errno`.
 
 **NOTE**: No error is returned when the specified device is not found.
 
@@ -1495,7 +1495,7 @@ char *name,             /* Pointer to name of device */
 
 `csd_setparam()` assigns a new parameter string to an existing device.
 
-If unsuccessful, `csd_setparam()` returns -1 and the appropriate error code is placed in the global variable `errno`.
+If unsuccessful, `csd_setparam()` returns `-1`and the appropriate error code is placed in the global variable `errno`.
 
 -----
 
@@ -1520,7 +1520,7 @@ If `res` is set to one, the driver will create an FCT for a high resolution disp
 
 You must create one FCT for each plane to display. For each of these planes, one or more LCT' s may be created.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1545,7 +1545,7 @@ The `lctlen` specifies the number of lines in the LCT in high resolution coordin
 
 You must create one FCT for each plane to display. For each of these planes, one or more LCT's may be created.
 
-If the call is successful the LCT identifier will be returned. -1 is returned
+If the call is successful the LCT identifier will be returned. `-1` is returned
 on error and `errno` is set.
 
 -----
@@ -1563,7 +1563,7 @@ int path,               /* Path to video device */
 
 `dc_dlfct()` deletes the specified FCT and frees up any memory used by it.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1580,7 +1580,7 @@ int path,               /* Path to video device */
 
 `dc_dllct()` deletes the specified LCT and frees up any memory used by it.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1598,7 +1598,7 @@ int path,               /* Path to video device */
 
 `dc_exec()` causes the display control hardware to execute the display control program associated with the given FCT's. `fctid1` corresponds to plane A and `fctid2` corresponds with plane B. If either id is 0, the default FCT for that plane is executed.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1618,7 +1618,7 @@ int path,               /* Path to video device */
 
 If the FCT is high resolution and the LCT is low resolution, both FCT's for the plane will point to the same LCT line. If the LCT is high resolution, the even field FCT will point to the given line and the odd field FCT will point to the next line.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1637,7 +1637,7 @@ int path,               /* Path to video device */
 - `0`               No interlace
 - `1`               Repeat field interlace
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1679,7 +1679,7 @@ int path,               /* Path to video device */
 
 `dc_nop()` writes an array of NOP instructions to the LCT specified by `lctid`. The array will be written starting at the line specified by `startline` and `startcol`. The number of columns per line to be written is specified by `numcols`. The number of lines to be written is specified by `numlines`.
 
-The function returns -1 on error and `errno` is set.
+The function returns `-1`on error and `errno` is set.
 
 -----
 
@@ -1700,7 +1700,7 @@ int path,               /* Path to video device */
 
 `dc_prdlct()` reads a two dimensional array of instructions from the LCT into the buffer pointed to by `buff`. The first element of the array to be read is specified by `lineno` and `colno`. These values reference the physical LCT regardless of resolution. The number of columns per line to be read is specified by `numcols`. The number of lines to be read is specified by `numlines`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1738,7 +1738,7 @@ int path,               /* Path to video device */
 
 `dc_rdfct()` reads count instructions from the specified FCT starting at instruction `startins`. The data will be copied into the buffer pointed to by `buff`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1755,7 +1755,7 @@ int path,               /* Path to video device */
 
 `dc_rdfi()` reads the single instruction specified by number from the FCT and returns it to the application.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1776,7 +1776,7 @@ int path,               /* Path to video device */
 
 `dc_rdlct()` reads a two dimensional array of instructions from the LCT into the buffer pointed to by `buff`. The first element of the array to be read is specified by `lineno` and `colno`. The number of columns per line to be read is specified by `numcols`. The number of lines to be read is specified by `numlines`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1794,7 +1794,7 @@ int path,               /* Path to video device */
 
 `dc_rdli()` returns the instruction specified by `lineno` and `insnum` in the LCT specified by `lctid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1832,7 +1832,7 @@ The `mode` is defined as follows:
 - `0` Image and Display are the same resolution
 - `1` Image and Display are different resolutions
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1849,7 +1849,7 @@ int path,               /* Path to video device */
 
 dc_ssig() requests the video driver to send the signal specified by `sigcode`, after `count` video interrupts. If `count` is 0, the signal will be sent on the next video interrupt.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1868,7 +1868,7 @@ int path,               /* Path to video device */
 
 `dc_wrfct()` writes count instructions from the buffer pointed to by `buff` into an FCT starting at the instruction specified by `startins`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1886,7 +1886,7 @@ int path,               /* Path to video device */
 
 `dc_wrf1()` writes a single instruction to the specified FCT. The instruction number to be written is specified by `number` and the actual data to write is passed in `instruct`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1907,7 +1907,7 @@ int path,               /* Path to video device */
 
 `dc_wrlct()` writes data from the buffer pointed to by buff to a two dimensional array in the LCT specified by `lctid`. The first element of the array to be written is specified by `lineno` and `colno`. The number of columns per line to be written is specified by `numcols`. The number of lines to be written is specified by `numlines`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1926,7 +1926,7 @@ int path,               /* Path to video device */
 
 `dc_wrli()` writes the instruction passed as `instruct` to the specified location in the LCT specifed by `lctid`. The instruction is written at the position specified by `lineno` and `insnum`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1942,7 +1942,7 @@ int path,               /* Path to video device */
 
 `dm_close()` deallocates the memory associated with the drawmap specified by `dmid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1959,7 +1959,7 @@ char *data;             /* Pointer to error bit string */
 
 `dm_cncl()` performs the video driver's error concealment function for the drawmap specified by `dmid`. The data pointed to by data is a bit string containing one bit for each line of the drawmap. If a bit is set, the corresponding line in the drawmap is in error. The erroneous line is then replaced in the drawmap with the previous line. If the first line is in error, it is replaced by the first non-erroneous line. If all lines are in error, this function will return an `E$IllPrm` error.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -1986,7 +1986,7 @@ The size of the rectangle is given by `width` and `height`.
 
 The two drawmaps must have the same data type.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2048,7 +2048,7 @@ The size of the drawmap data area depends upon the two-dimensional size specifie
 
 If the application creates a drawmap with even and odd lines separated, the driver initializes the Line Pointer Table (LPT) entry for the first line to byte 0 and the LPT entry for the second line at byte `size / 2`.
 
-`dm_creat()` returns the drawmap id of the new drawmap. If `dm_creat()` gets an error, it will return -1 and `errno` will be set.
+`dm_creat()` returns the drawmap id of the new drawmap. If `dm_creat()` gets an error, it will return `-1` and `errno` will be set.
 
 -----
 
@@ -2172,7 +2172,7 @@ The size of both rectangles is specified by `width` and `height`.
 
 The two drawmaps must have the same data type.
 
--1 is returned on error and `errno` is set with the appropriate error code.
+`-1` is returned on error and `errno` is set with the appropriate error code.
 
 -----
 
@@ -2218,7 +2218,7 @@ int path,               /* Path to video device */
 
 `dm_org()` changes the origin position of the drawmap specified by `dmid` in the coordinate space. When the drawmap is created, the default origin is the upper left comer of the drawmap. The new origin is specified as an offset from the upper left comer of the drawmap by `xcoord`, `ycoord`.
 
-This function returns zero. If an error occurs, -1 is returned with the appropriate error code set in `errno`.
+This function returns zero. If an error occurs, `-1` is returned with the appropriate error code set in `errno`.
 
 -----
 
@@ -2235,7 +2235,7 @@ int path,               /* Path to video device */
 
 `dm_rdpix()` returns the pixel data read from the coordinates `x`, `y` in the drawmap specified by `dmid`.
 
-If an error occurs, -1 is returned with the appropriate error code set in `errno`.
+If an error occurs, `-1` is returned with the appropriate error code set in `errno`.
 
 -----
 
@@ -2257,7 +2257,7 @@ char *pixarr;           /* Pointer to pixel array */
 
 **NOTE**: If the area to be read extends beyond the borders of the drawmap, an error will be returned.
 
-On error, -1 is returned and `errno` is set.
+On error, `-1` is returned and `errno` is set.
 
 -----
 
@@ -2287,7 +2287,7 @@ The size of the rectangle is given by `width` and `height`.
 
 The two drawmaps must have the same data type.
 
--1 is returned on error and `errno` is set with the appropriate error code.
+`-1` is returned on error and `errno` is set with the appropriate error code.
 
 **NOTE**: This call is only usable on CLUT and RGB type drawmaps.
 
@@ -2320,7 +2320,7 @@ The size of both rectangles is specified by `width` and `height`.
 
 The two drawmaps must have the same data type.
 
--1 is returned on error and `errno` is set with the appropriate error code.
+`-1` is returned on error and `errno` is set with the appropriate error code.
 
 **NOTE**: This call is only usable on CLUT and RGB type drawmaps.
 
@@ -2348,7 +2348,7 @@ rows in the pixel array are an integral number of longwords in length.
 UCM also assumes that all the bits for a pixel are in a contiguous string
 of bits in the array.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2366,7 +2366,7 @@ int path,               /* Path to video device */
 
 `dm_wrpix()` writes the pixel data `pixdata` at the specified coordinates `x`, `y` in the drawmap `dmid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2384,7 +2384,7 @@ int path,               /* Path to video device */
 
 `dp_afnt()` activates the font specified by `fntident` to be used for graphics text on the drawmap specified by `dmid`. The font will be associated with the active font number specified by `afn`. There may be up to four active fonts (0-3) at any given time.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2404,7 +2404,7 @@ int path,               /* Path to video device */
 If `regid` is zero, the clipping region is reset to the default clipping region
 of the drawmap.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2421,7 +2421,7 @@ int path,               /* Path to video device */
 
 `dp_dfnt()` deactives the font specified by `afn` for the drawmap specified by `dmid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2439,7 +2439,7 @@ char *fntname;          /* pointer to font module name */
 
 **NOTE**: The font module must be in the application's execution directory for it to be loaded by `F$Load`.
 
-The font identifier is returned upon a successful link/load. -1 is returned on error and `errno` is set.
+The font identifier is returned upon a successful link/load. `-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2456,7 +2456,7 @@ int path,               /* Path to video device */
 
 `dp_paln()` aligns the pixel specified by the coordinates `x`, `y` in the drawing pattern with the pixel at coordinate 0,0 in the drawmap specified by `dmid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2474,7 +2474,7 @@ int path,               /* Path to video device */
 
 `dp_pnsz()` sets the and width of the lines that are used to draw all lines and unfilled shapes in the drawmap `dmid`. `penwidth` and `penheight` are specified in pixel units. The default width and height is one pixel.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2500,7 +2500,7 @@ line drawn as:  11110011111100111100111111001111
 
 This penstyle is used when the `OP_DSDSH` bit is set in the drawing opcode.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2537,7 +2537,7 @@ If `type` equals 0, 1 or 2, the pixel data is expanded using a set of color regi
 
 If `type` equals 3, 4, 5 or 9, actual pixel data is pointed to by `pattern`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2553,7 +2553,7 @@ int path,               /* Path to video device */
 
 `dp_rfnt()` deallocates the memory used by the specified font module `fntident` and unlinks the font module.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2590,7 +2590,7 @@ int path,               /* Path to video device */
 
 `dp_scr()` sets the color data to be used for pixel expansion. The register specified by `regno` will be set to the given data in `colordata`. There are sixteen registers available. The format of the color data given depends upon the type of the drawmap specified by `dmid`. For example, for CLUT drawmaps, the color register would contain the CLUT number. For RGB drawmaps, the color register would contain the actual RGB value.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2607,7 +2607,7 @@ int path,               /* Path to video device */
 
 `dp_tcol()` sets the color that will be used in the transparency check by the drawing functions. The format of the color data is dependant upon the type of the drawmap specified by `dmid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2630,7 +2630,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2657,7 +2657,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2680,7 +2680,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2708,7 +2708,7 @@ The size of the rectangle copied is defined by `width` and `height`. The origin 
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2735,7 +2735,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2757,7 +2757,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2779,7 +2779,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2807,7 +2807,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2831,7 +2831,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2855,7 +2855,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 ### `dr_ewdg()` Draw an Elliptical Wedge
 
@@ -2880,7 +2880,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2902,7 +2902,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2929,7 +2929,7 @@ If the text will not fit in the specified length, it will be truncated. The text
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2952,7 +2952,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2975,7 +2975,7 @@ short *vertarr;         /* Pointer to array of vertices */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -2998,7 +2998,7 @@ short *vertarr;         /* Pointer to array of vertices */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3021,7 +3021,7 @@ int path,               /* Path to video device */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3045,7 +3045,7 @@ int  maxchrs;           /* maximum number of chars to write */
 
 `opcode` sets the operational specifications for the drawing functions (i.e. whether clipping will be performed, how shapes will be filled and how pixels will be combined). Definitions for setting `opcode` are defined in the `DEFS` file `ucm.h` and in the drawing functions overview in the first chapter.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3077,7 +3077,7 @@ bits   0-2  BOFF period (zero = never off)
      16-31  reserved
 ```
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3102,7 +3102,7 @@ bits   0-7  Blue
 
 **NOTE**: In the base case CD-I configuration, only the high order bit of each of these bytes is checked. Consequently, there are eight colors at low intensity (bit 31 = 0) and eight colors at high intensity (bit 31 = 1 ).
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3117,7 +3117,7 @@ int path;               /* Path to video device */
 
 `gc_hide()` causes the graphics cursor to disappear from the screen.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3133,7 +3133,7 @@ int path,               /* Path to video device */
 
 `gc_org()` sets the graphics cursor origin. The new origin is specified by the coordinates `x`, `y`. These coordinates are relative to the default origin at the upper left corner of the full screen display.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3149,7 +3149,7 @@ int path,               /* Path to video device */
 
 `gc_pos()` changes the position of the graphics cursor on the display. The `x`, `y` coordinates specify where the hit-point of the cursor will be positioned.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3180,7 +3180,7 @@ The pixels set to one in the bitmap will be displayed in the graphics cursor col
 **NOTE**: This resolution is independent of the resolution of any
 drawmap.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3195,7 +3195,7 @@ int path;               /* Path to video device */
 
 `gc_show()` causes the graphics cursor to be displayed on the screen.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3225,7 +3225,7 @@ int count;              /* Number of bytes to read from file descriptor */
 
 `gs_gcdfd()` reads count bytes of the file descriptor of the file indicated by the path number `path`. The file descriptor data is returned in the buffer pointed to by `buffer`. The CDFM file descriptor is defined in the header file `cdi.h`.
 
-This function returns 0, if successful. If the path is invalid, this call returns -1 with the appropriate error code in the variable `errno`.
+This function returns 0, if successful. If the path is invalid, this call returns `-1`with the appropriate error code in the variable `errno`.
 
 -----
 
@@ -3243,7 +3243,7 @@ This call copies the options section of the path descriptor of the specified `pa
 
 The options section of the path descriptor contains information which may be of use to the application. Certain fields in the path descriptor may be changed by the application. To do so, first read the option section (i.e. use this call), change the individual fields in the buffer and write the new options section using the `ss_opt()` function.
 
-If the path is invalid, this call returns -1 with the appropriate error code in the variable `errno`.
+If the path is invalid, this call returns `-1`with the appropriate error code in the variable `errno`.
 
 -----
 
@@ -3259,7 +3259,7 @@ char *buffer;           /* Pointer to buffer to hold pathlist */
 
 `gs_path()` returns a full pathlist of the open file specified by the path number `path`. The pathlist is returned in the buffer pointed to by `buffer`.
 
-If the path is invalid, this call returns -1 with the appropriate error code in the variable `errno`.
+If the path is invalid, this call returns `-1`with the appropriate error code in the variable `errno`.
 
 -----
 
@@ -3301,7 +3301,7 @@ int kb_rdy(path)
 int path;               /* Path to keyboard device */
 ```
 
-`kb_rdy()` returns the number of characters that are in the keyboard buffer. If no data is available or the path is invalid, a -1 is returned and the appropriate error code is placed in `errno`.
+`kb_rdy()` returns the number of characters that are in the keyboard buffer. If no data is available or the path is invalid, a `-1` is returned and the appropriate error code is placed in `errno`.
 
 -----
 
@@ -3444,7 +3444,7 @@ There are three types of memory that may be specified:
 - `VIDEO1` Video memory for plane A
 - `VIDEO2` Video memory for plane B
 
-`make_module()` returns a pointer to the beginning of the module header. If the data module can not be created, a value of -1 is returned and the appropriate error code is placed in the global variable `errno`.
+`make_module()` returns a pointer to the beginning of the module header. If the data module can not be created, a value of `-1` is returned and the appropriate error code is placed in the global variable `errno`.
 
 -----
 
@@ -3474,7 +3474,7 @@ There are three types of memory that may be specified:
 - `VIDEO1` Video memory for plane A
 - `VIDEO2` Video memory for plane B
 
-If the load is successful, `modcload()` returns a pointer to the module. If the load fails, -1 is returned and the appropriate error code is placed in the global variable `errno`.
+If the load is successful, `modcload()` returns a pointer to the module. If the load fails, `-1` is returned and the appropriate error code is placed in the global variable `errno`.
 
 -----
 
@@ -3502,7 +3502,7 @@ Bit 0:     1 = Button 1 depressed
            This is especially important for graphics tablet and touch screen devices.
 ```
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 > The documentation refers to `path` as the video device path, however in order to support two controllers, the `DT_PTR` path must be specified.
 > `x` and `y` are specified in the range 0-1023
@@ -3521,7 +3521,7 @@ int path,               /* Path to Pointing device */
 
 `pt_org()` sets the pointer origin to the given `x`, `y` coordinates. The new origin is set relative to the upper left corner of the full screen display.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 > The documentation refers to `path` as the video device path, however in order to support two controllers, the `DT_PTR` path must be specified.
 > `x` and `y` are specified in the range 0-1023
@@ -3540,7 +3540,7 @@ int path,               /* Path to Pointing device */
 
 `pt_pos()` positions the pointing device to the specified coordinates `x`, `y`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 > The documentation refers to `path` as the video device path, however in order to support two controllers, the `DT_PTR` path must be specified.
 > `x` and `y` are specified in the range 0-1023
@@ -3558,7 +3558,7 @@ int path;               /* Path to Pointing device */
 
 `pt_rel()` releases the pointer from a `pt_ssig()` request.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 > The documentation refers to `path` as the video device path, however in order to support two controllers, the `DT_PTR` path must be specified.
 
@@ -3576,7 +3576,7 @@ int path,               /* Path to Pointing device */
 
 `pt_ssig()` sets up a signal to be sent to the process when the pointer is moved or one of its triggers changes state.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 > The documentation refers to `path` as the video device path, however in order to support two controllers, the `DT_PTR` path must be specified.
 > Note that no signal is sent when the controller stops moving.
@@ -3610,7 +3610,7 @@ int path,               /* Path to video device */
 
 `regtype` determines the type dependant parameters that rg_creat() expects. The following are the parameters for each region type.
 
-In all cases the region identifier is returned, if the region is  uccessfully created. -1 is returned on error and `errno` is set.
+In all cases the region identifier is returned, if the region is  uccessfully created. `-1` is returned on error and `errno` is set.
 
 #### D_RECT: Rectangular region
 
@@ -3737,7 +3737,7 @@ int path,               /* Path to video device */
 
 `rg_del()` deallocates the memory associated with the region specified by `regid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3756,7 +3756,7 @@ int path,               /* Path to video device */
 
 The new region's identifier will be returned on successful creation of the region.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3776,7 +3776,7 @@ new region
 
 The new region's identifier will be returned on successful creation of the region.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3793,7 +3793,7 @@ int path,               /* Path to video device */
 
 `rg_move()` changes the position of the upper-left corner of the region's boundary rectangle to the specified coordinates `x`, `y`. The `x`, `y` coordinates are relative to the top left corner of the display. The boundary rectangle is defined as the rectangle that completely encloses the region.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3812,7 +3812,7 @@ int path,               /* Path to video device */
 
 The new region's identifier will be returned on successful creation of the region.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3831,7 +3831,7 @@ int path,               /* Path to video device */
 
 The new region's identifier will be returned on successful creation of the region.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3875,7 +3875,7 @@ If the loopback points are set, when output to the audio processor reaches the e
 
 The soundgroups specified by `stgrp` and `endgrp` must be on sector boundaries.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3899,7 +3899,7 @@ first soundmap (`smid1`).
 
 If the soundmaps are different sizes, the number of sectors mixed is determined by the smallest of the three soundmaps.
 
-If successful, this call returns 0. -1 is returned on error and `errno` is set.
+If successful, this call returns 0. `-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3930,7 +3930,7 @@ The `chansel` parameter specifies the channel mixing as defined in `cdfm.h` and 
 - `2` `MIX_R1L2` Right channel of soundmap 1 and Left channel of soundmap 2
 - `3` `MIX_R1R2` Right channels of both soundmaps
 
-If succesful, this call returns 0. -1 is returned on error and `errno` is set.
+If succesful, this call returns 0. `-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3946,7 +3946,7 @@ int path,               /* Path to audio processor */
 
 `sm_close()` deallocates the memory associated with the specified soundmap.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3963,7 +3963,7 @@ PL_ERR *errdata;        /* Error data structure */
 
 `sm_cncl()` performs the error concealment function of the audio driver. `errdata` is a pointer to a `PL_Err` structure pointed to be `PCL_Err` in the Play Control List. If the bit is set, the corresponding group is in error and needs to be corrected.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -3994,7 +3994,7 @@ The soundmap type is specified by `datatype`. The valid data types are defined i
 
 The actual address of the soundmap data area is placed in the location specified by `mapaddr`. This function returns the soundmap identifier.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4048,7 +4048,7 @@ int path;               /* Path to audio processor */
 
 `sm_off()` causes output to the audio processor to be stopped. If a soundmap is playing, no signal is sent to the process.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4087,7 +4087,7 @@ typedef struct stat_blk {
 
 **NOTE**: If a `sm_out()` call is made before the last sector is played from a previous `sm_out()` call, the first soundmap will be discontinued and the signal will not be sent.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4115,7 +4115,7 @@ typedef struct AudioStatus {
 } AudioStatus;
 ```
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4140,7 +4140,7 @@ There are three types of memory that may be specified:
 - `VIDEO2` Video memory for plane B
 
 If successful, a pointer to the memory granted is returned. The pointer
-returned will always begin on an even byte boundary. If the request was not granted, the function returns the value -1 and the appropriate error code is left in the global variable `errno`.
+returned will always begin on an even byte boundary. If the request was not granted, the function returns the value `-1` and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4157,7 +4157,7 @@ int path;
 
 Only a process with a super-user ID (0,0) or with the user ID of the process which started the operation to be aborted may execute this call.
 
-If successful, this function causes an `E$Abort` error to be returned to any asynchronous operations. If not, the function returns the value -1 and the appropriate error code is left in the global variable `errno`.
+If successful, this function causes an `E$Abort` error to be returned to any asynchronous operations. If not, the function returns the value `-1` and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4172,7 +4172,7 @@ int path;
 
 `ss_cchan()` is used to notify the CD-I driver to attempt to change the data and audio channels that are being used with the current play in progress. Before making this call the application must change the values in the play control block for the desired channel changes (i.e., the `PCB_Chan` and `PCB_AChan` fields). This allows the program to change the channel being played at any time; not just when an end-of-record or a trigger bit in a sector is reached.
 
-If successful, this function returns 0; if not, the function returns the value -1 and the appropriate error code is left in the global variable `errno`.
+If successful, this function returns `0`; if not, the function returns the value `-1` and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4208,7 +4208,7 @@ typedef struct stat_blk {
 
 `asy_sig` contains the signal number to be sent when the operation is finished or an error occurs. It is initialized by the application before the operation is begun and may be changed by the application during the operation. If this field is set to zero, no signal is sent when the play is finished or an error occurs. The error code is placed in this field when an error occurs during the operation.
 
-If successful, `ss_cdda()` returns 0; otherwise -1 is returned and the appropriate error code is left in the global variable `errno`.
+If successful, `ss_cdda()` returns 0; otherwise `-1` is returned and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4223,7 +4223,7 @@ int path;
 
 This call causes the disc drive to continue playing after it has been given a pause command.
 
-If successful, `ss_cont()` returns 0; otherwise -1 is returned and the appropriate error code is left in the global variable `errno`.
+If successful, `ss_cont()` returns 0; otherwise `-1` is returned and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4239,7 +4239,7 @@ int path;
 `ss_disable()` disables any eject or disc drive related user controls on the
 CD-I player.
 
-If successful, `ss_disable()` returns 0; otherwise -1 is returned and the
+If successful, `ss_disable()` returns 0; otherwise `-1` is returned and the
 appropriate error code is left in the global variable `errno`.
 
 -----
@@ -4257,7 +4257,7 @@ int path;
 
 Only a process with a super-user ID (0,0) may execute this call.
 
-If successful, `ss_eject()` returns 0; otherwise -1 is returned and the appropriate error code is left in the global variable `errno`.
+If successful, `ss_eject()` returns 0; otherwise `-1` is returned and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4272,7 +4272,7 @@ int path;
 
 `ss_enable()` enables any eject or disc drive related user controls on the CD-I player.
 
-If successful, `ss_enable()` returns 0; otherwise -1 is returned and the appropriate error code is left in the global variable `errno`.
+If successful, `ss_enable()` returns 0; otherwise `-1` is returned and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4290,7 +4290,7 @@ int path,
 
 The disc is specified by the disc number `diskn`. `diskn` may range between 0 and 65535. On a single disc player, the number used is 0.
 
-If successful, `ss_mount()` returns 0; otherwise -1 is returned and the appropriate error code is left in the global variable `errno`.
+If successful, `ss_mount()` returns 0; otherwise `-1` is returned and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4310,7 +4310,7 @@ The options section of the path descriptor contains information which may be of 
 
 Currently, only `PD_CNUM` may he changed by the application. `PD_CNUM` selects a different channel mask for the next synchronous CD disc I/O operation.
 
-If the path is invalid, this call returns -1 with the appropriate error code
+If the path is invalid, this call returns `-1`with the appropriate error code
 in the variable `errno`.
 
 -----
@@ -4328,7 +4328,7 @@ int path;
 
 Only a process with a super-user ID (0,0) or with the user ID of the process which started the operation to be paused may execute this call.
 
-If successful, `ss_pause()` returns 0; otherwise -1 is returned and the appropriate error code is left in the global variable `errno`.
+If successful, `ss_pause()` returns 0; otherwise `-1` is returned and the appropriate error code is left in the global variable `errno`.
 
 -----
 
@@ -4446,7 +4446,7 @@ typedef struct {
 } _toc;
 ```
 
-If an error occurs -1 is returned and `errno` is set.
+If an error occurs `-1` is returned and `errno` is set.
 
 -----
 
@@ -4502,7 +4502,7 @@ This subroutine module will be passed all unknown Getstat and Setstat system cal
 
 For further information about the use of subroutine modules and the `SS_SLink` system call, refer to the Green Book.
 
-If an error occurs -1 is returned and `errno` is set.
+If an error occurs `-1` is returned and `errno` is set.
 
 -----
 
@@ -4517,7 +4517,7 @@ int path;
 
 `ss_stop()` causes the disc drive to stop. If a play operation is in progress, the equivalent of an `ss_abort()` is executed first. This call does not open the drive door.
 
-If an error occurs -1 is returned and `errno` is set
+If an error occurs `-1` is returned and `errno` is set
 
 -----
 
@@ -4536,7 +4536,7 @@ short maxchrs;          /* Maximum number of characters to use */
 
 `viq_cpos()` calculates the relative horizontal placement of characters if the string pointed to by `str` were to be printed using the `dr_text()` function. Up to `maxchrs` characters are used or until a NULL byte is reached in the string. The UCM coordinate positions are returned in a buffer pointed to by `buff`. The coordinates are returned in an array of shorts. Consequently, the buffer must have at least twice as many bytes as characters specified by `maxchars`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4591,7 +4591,7 @@ typedef struct FontData {
 } FONTDATA;
 ```
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4609,7 +4609,7 @@ char *buff;             /* Pointer to buffer to hold glyph data */
 
 `viq_gdta()` returns the glyph data table entry in the 4-byte buffer pointed to by `buff` for the glyph specified by `glyphno` for the font specified by `fntid`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4629,7 +4629,7 @@ short maxchrs;          /* Maximum number of characters to use */
 
 `viq_jcps()` calculates the relative horizontal placement of characters for justified text that is to be printed with `dr_jtxt()`. The text string is pointed to by `str` and the justification length is given by `justlen`. Only up to `maxchrs` characters are used in the string or until a NULL byte is reached. The relative positions in UCM coordinates will be returned in a buffer pointed to by `buff`. The coordinates are returned in an array of shorts. Consequently, the buffer must have at least twice as many bytes as characters specified by `maxchars`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4682,7 +4682,7 @@ int path,               /* Path to video device */
 
 `viq_rloc()` finds the boundary rectangle of a region and returns the coordinates of its opposite comers in the values pointed at by `sx`, `sy` and `ex`, `ey`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
 
 -----
 
@@ -4707,4 +4707,4 @@ int   *nochars,         /* Pointer to number of chars that fit in length */
 
 This is useful for text placement using `dr_text()` and `dr_jtxt()`.
 
--1 is returned on error and `errno` is set.
+`-1` is returned on error and `errno` is set.
