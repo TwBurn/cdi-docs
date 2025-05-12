@@ -786,7 +786,7 @@ The following table describes what combination of values for `cm0` and `cml` are
 
 `nm` can take one of the two values:
 
-- `NM_l`            One Matte Register
+- `NM_1`            One Matte Register
 - `NM_2`            Two Matte Registers
 
 `ev` can take one of the two values:
@@ -823,18 +823,18 @@ This function returns an instruction which may be written into an LCT or a FCT.
 
 - `MO_END`          Disregard commands in higher registers
 - `MO_ICF_0`        Change ICF for plane A
-- `MO_ICF_l`        Change ICF for plane B
+- `MO_ICF_1`        Change ICF for plane B
 - `MO_RES`          Reset matte flag to FALSE
 - `MO_SET`          Set matte flag to true
 - `MO_RES_ICF0`     Reset matte flag and change ICF for plane A
 - `MO_SET_ICF0`     Set matte flag and change ICF for plane A
-- `MO_RES_ICFl`     Reset matte flag and change ICF for plane B
-- `MO_SET_ICFl`     Set matte flag and change ICF for plane B
+- `MO_RES_ICF1`     Reset matte flag and change ICF for plane B
+- `MO_SET_ICF1`     Set matte flag and change ICF for plane B
 
 `mf` can take one of the two values:
 
 - `MF_MF0`          Matte flag to be changed = 0
-- `MF_MFl`          Matte flag to be changed = 1
+- `MF_MF1`          Matte flag to be changed = 1
 
 `icf` can take values between
 
@@ -1010,7 +1010,7 @@ This function returns an instruction which may be written into an LCT or a FCT.
 - `TR_CKEY_F`           Color key = FALSE
 - `TR_TBIT_F`           Transparent bit = 0
 - `TR_MAT0_F`           Matte Flag 0 = FALSE
-- `TR_MATl_F`           Matte Flag 1 = FALSE
+- `TR_MAT1_F`           Matte Flag 1 = FALSE
 - `TR_M0CK_F`           Matte Flag 0 = FALSE or Color key = FALSE
 - `TR_M1CK_F`           Matte Flag 1 = FALSE or Color key = FALSE
 
