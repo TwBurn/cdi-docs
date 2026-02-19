@@ -86,25 +86,18 @@ mode.
 ### `mv_borcol()` Set the border colour
 
 ```c
-mv_borcol(path, vimid, color)
+mv_borcol(path, vimid, red, green, blue)
 int     path,     /* Path Number */
         vimid,    /* Video mapID */
-        color;    /* Color Value */
+        red,      /* 0-255 */
+        green,    /* 0-255 */
+        blue;     /* 0-255 */
 ```
 
 This function sets the border colour. If the specified MVM is currently active, the
 parameters are copied into the MVM descriptor and the parameters are activated
 immediately. If the MVM is not active, the parameters are copied into the MVM
 descriptor only.
-
-Format of the `color` parameter:
-
-```plaintext
-bits   0-7  Blue
-      8-15  Green
-     16-23  Red
-     24-31  Unused
-```
 
 `mv_borcol()` function returns `0` if successful,
 otherwise `-1` is returned and `errno` is set.
@@ -684,9 +677,10 @@ otherwise `-1` is returned and `errno` is set.
 ### `mv_cdplay()` Play video from CD
 
 ```c
-mv_cdplay(path, vimid, offset, pcl, statusblk, syncmode, syncoffset)
+mv_cdplay(path, vimid, speed, offset, pcl, statusblk, syncmode, syncoffset)
 int      path,       /* Path Number */
          vimid,      /* Video mapID */
+         speed,      /* Speed */
          offset,     /* Offset in PCL buffer */
          syncmode,   /* Sync mode/path to sync */
          syncoffset; /* Sync offset to video */
@@ -734,9 +728,10 @@ otherwise `-1` is returned and `errno` is set.
 ### `mv_hostplay()` Start play of a host video map
 
 ```c
-mv_hostplay(path, vimid, size, vidmap, offset, statusblk, syncmode, syncoffset)
+mv_hostplay(path, vimid, speed, size, vidmap, offset, statusblk, syncmode, syncoffset)
 int      path,         /* Path Number */
          vimid,        /* Video mapID */
+         speed,        /* Speed */
          size,         /* Size of the video map */
          offset,       /* Offset within video map */
          syncmode,     /* Sync mode/path to sync with */
